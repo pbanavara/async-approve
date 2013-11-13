@@ -14,7 +14,7 @@ $ (function() {
   //Set filepicker permissions and api keys
   filepicker.setKey("AeH7rlXNxQYSSpE4yRdQwz");
   var id;
-  var url = "ws://idos.cloudapp.net:8888/websocket";
+  var url = "ws://localhost:8888/websocket";
   var hiringRequest = {};
   var template_admin = _.template($('#admin_template').html());
   var template_creator = _.template($('#creator_template').html());
