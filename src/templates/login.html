@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>IDOS</title>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+<link rel = "stylesheet" href = "{{ static_url("css/bootstrap.css") }}">
+<link rel="stylesheet" href="{{ static_url("css/select2.css") }}" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="{{ static_url("css/jquery-fallr-2.0.css") }}" type = "text/css">
+<link href="{{ static_url("css/idos.css") }}" rel="stylesheet" type="text/css">
+<link href="{{ static_url("css/pcss3t.css") }}" rel="stylesheet" type="text/css">
+<link href="{{ static_url("css/data_grids_main.css") }}" rel="stylesheet" type="text/css">
+<link href="{{ static_url("css/bootstrap.css")}}" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+<script src="{{ static_url("js/bootstrap.js") }}" type="text/javascript"></script>
+<script src="{{ static_url("js/bootstrap-tooltip.js") }}" type="text/javascript"></script>
+<script src="{{ static_url("js/bootstrap-popover.js") }}" type="text/javascript"></script>
+<script src="{{ static_url("js/underscore-min.js") }}" type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
+<script src="{{ static_url("js/index.js") }}" type="text/javascript"></script>
+<script src="{{ static_url("js/domy.js") }}" type="text/javascript"></script>
+<script src="{{ static_url("js/jquery-fallr-2.0.js") }}" type="text/javascript"></script>
+
+<script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>
+
+</head>
+<body>
+<div id="idos">
+	<div id="header">
+		<div id="logo"><a href="index.html"><img src="{{ static_url("img/idos.logo.png") }}"></a></div>
+		<div id="global-nav">Welcome, bipin@domyinc.com<br>
+			<div class="links"><a href="#">Sign Out</a> | <a href="#"><strong>Help</strong></a> | <a href="#" class="red"><strong>Feedback</strong></a></div>
+		</div>
+		<div class="clear-both"></div>
+	</div>
+	<div id="main">
+	
+	<!-- Login Screen -->
+	  <div id = "login">
+		  <div class="box">
+			  <div class="cell-50-left-ar clear-both">username <input type="text" id = "userName"></div>
+			  <div class="cell-50-left-ar" >Password <input type="password" id = "userPassword"></div>
+			  <div class="clear-both"></div>
+			</div>
+			<div class="box-last-row">
+			  <button type="submit" id = "submitUser">Login</button>
+			  <button type="button" class="red">Cancel</button>
+			</div>
+		</div>
+	<!-- End login screem -->
+  <!-- Template for Admin -->
+	<script type= "text/template" id = "admin_template">
+		<div class="box">
+		<h2>Budget Records</h2></br>
+		<table id="dataTable" border="1" style="background-color:white;table-layout: fixed;" 
+			class="table table-bordered">
+		<tr>
+			<td style="width: 150px;"><b><div>Project No</div></b></td>
+			<td style="width: 150px;"><b><div>Hiring Cost</div></b></td>
+			<td style="width: 150px;"><b><div>ODC</div></b></td>
+			<td style="width:150px"><b><div>View Details</div></b></td>
+			<td style="width:30px"><b><div>Add</div></b></td>
+		</tr>
+		</table>
+		<button class="btn btn-success" id="saveBudget">Save</button>
+		</div>
+		</div>
+  </script>
+  <!-- End admin template -->
+	<!-- Template for rendering creator -->
+	<script type= "text/template" id = "creator_template">
+	<div d="1" class="box">
+        <div class="cell-50-left-ar">Request Type <select name="reqtype" id = "requestTypeId"><option>Request for Hiring</option><option>Request for Something Else</option></select></div>
+        <div class="cell-50-left-ar clear-both">Project Title <input type="text" id = "projectTitle"></div>
+        <div class="cell-50-left-ar" >Project # <input type="text" id = "projectNumber"></div>
+        <div class="clear-both"></div>
+    </div>
+  <div class="box-no-border">
+    <h2>Job Details</h2>
+    <div class="cell-50-left-ar clear-both">Position <select name="position" id = "positionName"><option>CEO</option><option>Project Manager</option><option>Software Engineer</option></select></div>
+    <div class="cell-50-left-ar clear-both">Job Description <textarea id = "jobDescription"></textarea></div>
+    <div class="cell-50-left-ar clear-both">Start Date <input type="text" id="start-date"></div>
+    <div class="cell-50-left-ar">End Date <input type="text" id="end-date"></div>
+    <div class="cell-50-left-ar clear-both">Experience <select name="experience" id = "experienceLevel"><option>0 - 1 Years</option><option>2 - 4 Years</option><option>5 - 10 Years</option></select></div>
+    <div class="cell-50-left-ar clear-both">Reports To <select name="reports" id = "reportsTo"><option>GM</option><option>CTO</option><option>Delivery Manager</option></select></div>
+    <div class="clear-both"></div>
+  </div>
+  <div class="hr"></div>
+  <div id = "advertisingDiv" class="box-no-border">
+    <h2>Advertising</h2>
+    <div class="cell-50-left-ar clear-both">Place <input type="text" id = "advertisingPlace"></div>
+    <div class="cell-50-left-ar">Budget <input type="text" id = "advertisingDate"></div>
+    <div class="clear-both"></div>
+  </div>
+  
+  
+  
+  <div class="box-last-row">
+    <button type="submit" class = "submitHiringRequest">Submit Request</button>
+    <button type="button" class = "red">Cancel</button>
+  </div>
+  </script>
+  <!-- End creator template -->
+	
+	<!-- Template for rendering creator queue -->
+	<script type = "text/template" id = "creator_pending_template">
+	 <!-- tabs -->
+   <div id="creator_template_pending" class="pcss3t pcss3t-effect-scale pcss3t-theme-1 pcss3t-height-auto">
+     <input type="radio" name="pcss3t" checked  id="tab1"class="tab-content-first">
+     <label for="tab1"><i class="icon-bolt"></i>Pending Requests</label>
+     <ul>
+       <li class="tab-content tab-content-first typography">
+         <!-- CSS3 Data Grids -->
+                     <!-- inputs for table column filtering -->
+                     <!-- number of inputs == number of table columns -->
+                     <input id="col1" name="#" type="checkbox" />
+                     <input id="col2" name="#" type="checkbox" />
+                     <input id="col3" name="#" type="checkbox" />
+                     <input id="col4" name="#" type="checkbox" />
+                     <input id="col5" name="#" type="checkbox" />
+                     
+                     
+                     <table class="qlabs_grid_container">
+                       <!-- TABLE BODY -->
+                         <tbody class="data_container">
+                         
+                             <!-- SUBHEADER -->
+                             <!-- define optional columns width here -->
+                             <tr class="subheader_row">
+                                 <td class="subheader_cell">Project #</td>
+                                 <td class="subheader_cell">Request Type</td>
+                                 <td class="subheader_cell">Project Title</td>
+                                 <td class="subheader_cell">Position</td>
+                                 <td class="subheader_cell">Action</td>
+                             </tr>
+                             <!-- / -->
+                         </tbody>
+                     </table>
+                     <!-- /CSS3 Data Grids -->
+       </li>
+       
+     </ul>
+   </div>
+   <!--/ tabs -->
+         <div class="align-right margin-top">
+             <button type="button" id="newHiring" >New hiring request</button>
+         </div>
+	</script>
+	<!-- End creator queue template -->
+	
+	<!-- Approver template -->
+	<script type = "text/template" id = "approver_template">
+	
+  <!-- tabs -->
+    <div id = "approver_template_id" class="pcss3t pcss3t-effect-scale pcss3t-theme-1 pcss3t-height-auto">
+      <input type="radio" name="pcss3t" checked  id="tab1"class="tab-content-first">
+      <label for="tab1"><i class="icon-bolt"></i>Pending Requests</label>
+      <ul>
+        <li class="tab-content tab-content-first typography">
+          <!-- CSS3 Data Grids -->
+                      <!-- inputs for table column filtering -->
+                      <!-- number of inputs == number of table columns -->
+                      <input id="col1" name="#" type="checkbox" />
+                      <input id="col2" name="#" type="checkbox" />
+                      <input id="col3" name="#" type="checkbox" />
+                      <input id="col4" name="#" type="checkbox" />
+                      <input id="col5" name="#" type="checkbox" />
+                      <input id="col6" name="#" type="checkbox" />
+                      
+                      <table class="qlabs_grid_container">
+                        <!-- TABLE BODY -->
+                          <tbody class="data_container">
+                          
+                              <!-- SUBHEADER -->
+                              <!-- define optional columns width here -->
+                              <tr class="subheader_row">
+                                  <td class="subheader_cell">Request #</td>
+                                  <td class="subheader_cell">Requester</td>
+                                  <td class="subheader_cell">Request Type</td>
+                                  <td class="subheader_cell">Project Title</td>
+                                  <td class="subheader_cell">Position</td>
+                                  <td class="subheader_cell">Action</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      
+        </li>
+        
+      </ul>
+    </div>
+    <!--/ tabs -->
+          <div class="align-right margin-top">
+              <button type="button" id="print-details">Print</button>
+          </div>
+	</script>
+	
+	</div>
+	<div id="footer">
+		<div class="links"><a href="#">About Us</a> | <a href="#">Terms</a> | <a href="#"><strong>Help</strong></a> | <a href="#" class="red"><strong>Feedback</strong></a> &copy; 2013 IDOS, Inc</div>
+	</div>
+	
+	
+</div>
+</body>
+</html>
+
